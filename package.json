@@ -1,27 +1,64 @@
 {
   "name": "react-folder-generator",
   "version": "2.0.3",
-  "description": "A CLI tool to generate React component folders with TypeScript and CSS files",
+  "description": "A CLI tool to generate React component folders with TypeScript/JavaScript and CSS/SCSS files with modular or scoped styling options",
   "main": "bin/react-folder-generator.js",
   "bin": {
-    "react-folder-generator": "./bin/react-folder-generator.js"
+    "react-folder-generator": "./bin/react-folder-generator.js",
+    "rfg": "./bin/react-folder-generator.js"
   },
   "type": "module",
   "scripts": {
-    "start": "node ./bin/react-folder-generator.js"
+    "start": "node ./bin/react-folder-generator.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Afriduzzaman",
   "license": "MIT",
   "keywords": [
     "react",
-    "folder",
-    "generator",
-    "typescript",
-    "css",
     "component",
-    "folder",
     "generator",
-    "react-folder-generator",
-    "create-react-folder"
-  ]
+    "scaffold",
+    "boilerplate",
+    "cli",
+    "command-line",
+    "typescript",
+    "javascript",
+    "tsx",
+    "jsx",
+    "css",
+    "scss",
+    "sass",
+    "css-modules",
+    "scss-modules",
+    "module-css",
+    "module-scss",
+    "scoped-styles",
+    "react-component",
+    "folder-structure",
+    "code-generation",
+    "developer-tools",
+    "productivity-tools",
+    "frontend",
+    "web-development",
+    "react-developer",
+    "component-architecture",
+    "file-generator",
+    "template-generator",
+    "react-boilerplate",
+    "react-cli",
+    "react-tooling"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thetourist2051/react-folder-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Thetourist2051/react-folder-generator/issues"
+  },
+  "homepage": "https://github.com/Thetourist2051/react-folder-generator#readme",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  }
 }

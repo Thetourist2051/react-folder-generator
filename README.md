@@ -1,122 +1,253 @@
-# Component Generator CLI
 
-A simple Node.js CLI tool to scaffold React component boilerplate with flexible styling options.
+<h1 align="center">🚀 Component Generator CLI</h1>
 
-## 🚀 Features
+<p align="center">A powerful Node.js CLI tool to scaffold React components with flexible architecture options.</p>
 
-- Supports JavaScript (`.jsx`) and TypeScript (`.tsx`)
-- Supports multiple styling formats: CSS, SCSS, CSS Modules, SCSS Modules
-- Optional scoped styling
-- Auto-generates component and style files
-- Validates input and prevents overwriting existing components
+---
 
-## 📦 Installation
+## ✨ Features
 
-Make sure you have Node.js installed.
+- ⚙️ Supports **JavaScript (.jsx)** and **TypeScript (.tsx)**
+- 🎨 Multiple styling options: **CSS, SCSS, CSS Modules, SCSS Modules**
+- 🛡 Scoped styling capability
+- 📁 Configurable folder structure
+- ✅ Input validation and overwrite protection
+
+---
+
+## 📋 Prerequisites
+
+### 🖥 System Requirements
+- Node.js **≥16.0.0**
+- npm **≥7.0.0** or **yarn**
+
+### 📦 Project Dependencies
+
+| Feature       | Required Packages              |
+|---------------|--------------------------------|
+| TypeScript    | `typescript`, `@types/react`   |
+| SCSS          | `sass`                         |
+| CSS Modules   | Build tool configuration       |
+
+---
+
+## 🛠 Installation
 
 ```bash
 npm install -g react-folder-generator
+# or for project-specific
+npm install react-folder-generator --save-dev
 ```
 
-Or if using locally:
+---
+
+## 🗂 Folder Structure Conventions
+
+### 📌 Naming Patterns
+
+**Kebab-case (Recommended)**
+
+```
+src/components/my-component/
+├── index.tsx
+├── index.module.scss
+└── types.ts
+```
+
+**PascalCase**
+
+```
+src/components/MyComponent/
+├── MyComponent.tsx
+├── MyComponent.module.scss
+└── index.ts
+```
+
+**Flat Structure**
+
+```
+src/components/
+├── MyComponent.tsx
+├── MyComponent.module.scss
+└── MyComponent.test.tsx
+```
+
+---
+
+## 🎯 Scoped vs Non-Scoped Styles
+
+| Type       | File Pattern        | Usage Scenario         |
+|------------|---------------------|-------------------------|
+| Scoped     | `ComponentName.ext` | Component-specific      |
+| Non-Scoped | `index.ext`         | Shared/global styles    |
+
+---
+
+## 🔍 What is Scoped Styling?
+
+Scoped styling creates component-specific style files following naming patterns like:
+
+📄 **File Naming**
+
+- Component: `Button.tsx`
+- Style: `Button.module.scss` (when using `--scoped-style`)
+
+🎯 **Benefits**
+- Prevents style leakage
+- Explicit component-style association
+- Better large-scale project organization
+
+💡 **Example**
+
+```tsx
+// Button.tsx
+import styles from './Button.module.scss';
+
+const Button = () => (
+  <button className={styles.root}>
+    Click me
+  </button>
+);
+```
+
+```scss
+// Button.module.scss
+.root {
+  padding: 1rem 2rem;
+  background: blue;
+
+  &:hover {
+    background: darkblue;
+  }
+}
+```
+
+---
+
+## 💡 Usage Options
+
+### 🔧 Basic Command
 
 ```bash
-git clone https://github.com/Thetourist2051/react-folder-generator.git
-cd react-folder-generator
-npm install
+react-folder-generator ComponentName [options]
 ```
 
-## 🔧 Usage
+### 🧾 Option Matrix
+
+| Option           | File Pattern        | Requires             |
+|------------------|---------------------|----------------------|
+| `--ts`           | `.tsx`              | TypeScript           |
+| `--scss`         | `.scss`             | `sass`               |
+| `--module-scss`  | `.module.scss`      | CSS Modules config   |
+| `--scoped-style` | Component-named     | -                    |
+
+---
+
+## 🏗 Example Outputs
+
+### ✅ Standard Component
 
 ```bash
-generate-component <ComponentName> [options]
+react-folder-generator sidebar --scss
 ```
 
-### 📘 Examples
+```
+components/
+  sidebar/
+    ├── index.jsx
+    └── index.scss
+```
 
-#### Basic Component (JSX + CSS)
+### ✅ Scoped TypeScript Module
 
 ```bash
-generate-component Button
+react-folder-generator AuthForm --ts --module-scss --scoped-style
 ```
 
-Creates:
-- `Button/index.jsx`
-- `Button/index.css`
-
-#### TypeScript + SCSS Module + Scoped Style
-
-```bash
-generate-component AlertBox --ts --module-scss --scoped-style
+```
+components/
+  auth-form/
+    ├── AuthForm.tsx
+    ├── AuthForm.module.scss
+    └── index.ts
 ```
 
-Creates:
-- `AlertBox/AlertBox.tsx`
-- `AlertBox/AlertBox.module.scss`
+---
 
-#### JavaScript + SCSS
+## ⚙️ Build System Config
 
-```bash
-generate-component Card --scss
+### 📦 Webpack CSS Modules Setup
+
+```js
+{
+  test: /\.module\.scss$/,
+  use: [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: {
+          localIdentName: '[name]__[local]--[hash:base64:5]'
+        }
+      }
+    },
+    'sass-loader'
+  ]
+}
 ```
 
-Creates:
-- `Card/index.jsx`
-- `Card/index.scss`
+### ✨ TypeScript Support
 
-#### TypeScript + CSS Module
+Create `global.d.ts` file:
 
-```bash
-generate-component Modal --ts --module-css
+```ts
+declare module '*.module.css' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
+declare module '*.module.scss' {
+  const classes: { [key: string]: string };
+  export default classes;
+}
 ```
 
-Creates:
-- `Modal/index.tsx`
-- `Modal/index.module.css`
+---
 
-## 🛠 Options
+## ❓ FAQ
 
-| Option             | Description                                  |
-|--------------------|----------------------------------------------|
-| `--ts`             | Use TypeScript (`.tsx`)                      |
-| `--js`             | Use JavaScript (`.jsx`) (default)            |
-| `--css`            | Include plain CSS                            |
-| `--scss`           | Include SCSS                                 |
-| `--module-css`     | Use CSS Modules                              |
-| `--module-scss`    | Use SCSS Modules                             |
-| `--scoped-style`   | Use scoped style file with component name    |
+### 🟡 When should I use scoped styles?
+Recommended for:
+- Large codebases
+- Component libraries
+- Teams with multiple developers
 
-> ⚠️ You can only choose one of `--css`, `--scss`, `--module-css`, or `--module-scss` per component.
+### 🟡 What's the difference between `index.scss` and `Component.module.scss`?
+- `index.scss`: Global/shared styles
+- `Component.module.scss`: Locally scoped styles for a component
 
-## 📁 Output Structure
+---
 
-When using:
-
-```bash
-generate-component Example --ts --scss --scoped-style
-```
-
-It creates:
-
-```
-Example/
-├── Example.tsx
-└── Example.scss
-```
-
-## 👤 Author
+## 👨‍💻 Author
 
 **Afriduzzaman**  
-Experienced Web Developer | React, Angular, Ionic, React Native  
-GitHub: [https://github.com/Thetourist2051](https://github.com/Thetourist2051)   
-Email: [thetourist2051@gmail.com]
+Senior Frontend Engineer  
+GitHub [@Thetourist2051](https://github.com/Thetourist2051) | Email [thetourist2051@gmail.com](mailto:thetourist2051@gmail.com)
 
 ---
 
-## 📝 License
+## 📜 License
 
-MIT
+MIT © 2025 Afriduzzaman
 
 ---
 
-Feel free to contribute or raise issues!
+> This README follows technical writing best practices for clarity, visual hierarchy, and developer usability.
+
+
+<p align="center">
+  <img src="https://img.shields.io/npm/v/react-folder-generator?color=blue&style=flat-square" alt="npm version" />
+</p>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/placeholder/demo.gif" alt="demo gif" width="600"/>
+</p>
