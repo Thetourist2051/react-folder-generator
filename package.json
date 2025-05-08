@@ -1,6 +1,6 @@
 {
   "name": "react-folder-generator",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "A CLI tool to generate React component folders with TypeScript/JavaScript and CSS/SCSS files with modular or scoped styling options",
   "main": "bin/react-folder-generator.js",
   "bin": {
