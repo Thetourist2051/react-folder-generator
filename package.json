@@ -1,0 +1,27 @@
+{
+  "name": "react-folder-generator",
+  "version": "2.0.3",
+  "description": "A CLI tool to generate React component folders with TypeScript and CSS files",
+  "main": "bin/react-folder-generator.js",
+  "bin": {
+    "react-folder-generator": "./bin/react-folder-generator.js"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node ./bin/react-folder-generator.js"
+  },
+  "author": "Afriduzzaman",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "folder",
+    "generator",
+    "typescript",
+    "css",
+    "component",
+    "folder",
+    "generator",
+    "react-folder-generator",
+    "create-react-folder"
+  ]
+}
