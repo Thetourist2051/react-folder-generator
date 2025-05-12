@@ -51,7 +51,6 @@ npm install react-folder-generator --save-dev
 src/components/my-component/
 ├── index.tsx
 ├── index.module.scss
-└── types.ts
 ```
 
 **PascalCase**
@@ -60,7 +59,6 @@ src/components/my-component/
 src/components/MyComponent/
 ├── MyComponent.tsx
 ├── MyComponent.module.scss
-└── index.ts
 ```
 
 **Flat Structure**
@@ -69,7 +67,6 @@ src/components/MyComponent/
 src/components/
 ├── MyComponent.tsx
 ├── MyComponent.module.scss
-└── MyComponent.test.tsx
 ```
 
 ---
@@ -196,20 +193,6 @@ components/
 }
 ```
 
-### ✨ TypeScript Support
-
-Create `global.d.ts` file:
-
-```ts
-declare module '*.module.css' {
-  const classes: { [key: string]: string };
-  export default classes;
-}
-declare module '*.module.scss' {
-  const classes: { [key: string]: string };
-  export default classes;
-}
-```
 
 ---
 
@@ -248,6 +231,3 @@ MIT © 2025 Afriduzzaman
   <img src="https://img.shields.io/npm/v/react-folder-generator?color=blue&style=flat-square" alt="npm version" />
 </p>
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/placeholder/demo.gif" alt="demo gif" width="600"/>
-</p>
